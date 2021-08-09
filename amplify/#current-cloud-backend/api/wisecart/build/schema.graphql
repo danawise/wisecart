@@ -1,0 +1,314 @@
+type Product {
+  id: ID!
+  title: String!
+  description: String
+  image: String!
+  video: String!
+  images: [String!]!
+  options: [String!]
+  size: [String!]
+  quantity: Int
+  poster: String
+  avgRating: Float
+  ratings: Int
+  rank: String
+  price: Float!
+  oldPrice: Float
+  shipping: String
+  like: Float
+  comment: Float
+  share: Float
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type CartProduct {
+  id: ID!
+  usersub: String
+  quantity: Int!
+  options: String
+  productID: ID!
+  product: Product
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelProductConnection {
+  items: [Product]
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+input ModelProductFilterInput {
+  id: ModelIDInput
+  title: ModelStringInput
+  description: ModelStringInput
+  image: ModelStringInput
+  video: ModelStringInput
+  images: ModelStringInput
+  options: ModelStringInput
+  size: ModelStringInput
+  quantity: ModelIntInput
+  poster: ModelStringInput
+  avgRating: ModelFloatInput
+  ratings: ModelIntInput
+  rank: ModelStringInput
+  price: ModelFloatInput
+  oldPrice: ModelFloatInput
+  shipping: ModelStringInput
+  like: ModelFloatInput
+  comment: ModelFloatInput
+  share: ModelFloatInput
+  and: [ModelProductFilterInput]
+  or: [ModelProductFilterInput]
+  not: ModelProductFilterInput
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+type Query {
+  syncProducts(filter: ModelProductFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelProductConnection
+  getProduct(id: ID!): Product
+  listProducts(filter: ModelProductFilterInput, limit: Int, nextToken: String): ModelProductConnection
+  syncCartProducts(filter: ModelCartProductFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelCartProductConnection
+  getCartProduct(id: ID!): CartProduct
+  listCartProducts(filter: ModelCartProductFilterInput, limit: Int, nextToken: String): ModelCartProductConnection
+}
+
+input CreateProductInput {
+  id: ID
+  title: String!
+  description: String
+  image: String!
+  video: String!
+  images: [String!]!
+  options: [String!]
+  size: [String!]
+  quantity: Int
+  poster: String
+  avgRating: Float
+  ratings: Int
+  rank: String
+  price: Float!
+  oldPrice: Float
+  shipping: String
+  like: Float
+  comment: Float
+  share: Float
+  _version: Int
+}
+
+input UpdateProductInput {
+  id: ID!
+  title: String
+  description: String
+  image: String
+  video: String
+  images: [String!]
+  options: [String!]
+  size: [String!]
+  quantity: Int
+  poster: String
+  avgRating: Float
+  ratings: Int
+  rank: String
+  price: Float
+  oldPrice: Float
+  shipping: String
+  like: Float
+  comment: Float
+  share: Float
+  _version: Int
+}
+
+input DeleteProductInput {
+  id: ID!
+  _version: Int
+}
+
+type Mutation {
+  createProduct(input: CreateProductInput!, condition: ModelProductConditionInput): Product
+  updateProduct(input: UpdateProductInput!, condition: ModelProductConditionInput): Product
+  deleteProduct(input: DeleteProductInput!, condition: ModelProductConditionInput): Product
+  createCartProduct(input: CreateCartProductInput!, condition: ModelCartProductConditionInput): CartProduct
+  updateCartProduct(input: UpdateCartProductInput!, condition: ModelCartProductConditionInput): CartProduct
+  deleteCartProduct(input: DeleteCartProductInput!, condition: ModelCartProductConditionInput): CartProduct
+}
+
+input ModelProductConditionInput {
+  title: ModelStringInput
+  description: ModelStringInput
+  image: ModelStringInput
+  video: ModelStringInput
+  images: ModelStringInput
+  options: ModelStringInput
+  size: ModelStringInput
+  quantity: ModelIntInput
+  poster: ModelStringInput
+  avgRating: ModelFloatInput
+  ratings: ModelIntInput
+  rank: ModelStringInput
+  price: ModelFloatInput
+  oldPrice: ModelFloatInput
+  shipping: ModelStringInput
+  like: ModelFloatInput
+  comment: ModelFloatInput
+  share: ModelFloatInput
+  and: [ModelProductConditionInput]
+  or: [ModelProductConditionInput]
+  not: ModelProductConditionInput
+}
+
+type Subscription {
+  onCreateProduct: Product @aws_subscribe(mutations: ["createProduct"])
+  onUpdateProduct: Product @aws_subscribe(mutations: ["updateProduct"])
+  onDeleteProduct: Product @aws_subscribe(mutations: ["deleteProduct"])
+  onCreateCartProduct: CartProduct @aws_subscribe(mutations: ["createCartProduct"])
+  onUpdateCartProduct: CartProduct @aws_subscribe(mutations: ["updateCartProduct"])
+  onDeleteCartProduct: CartProduct @aws_subscribe(mutations: ["deleteCartProduct"])
+}
+
+type ModelCartProductConnection {
+  items: [CartProduct]
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelCartProductFilterInput {
+  id: ModelIDInput
+  usersub: ModelStringInput
+  quantity: ModelIntInput
+  options: ModelStringInput
+  productID: ModelIDInput
+  and: [ModelCartProductFilterInput]
+  or: [ModelCartProductFilterInput]
+  not: ModelCartProductFilterInput
+}
+
+input CreateCartProductInput {
+  id: ID
+  usersub: String
+  quantity: Int!
+  options: String
+  productID: ID!
+  _version: Int
+}
+
+input UpdateCartProductInput {
+  id: ID!
+  usersub: String
+  quantity: Int
+  options: String
+  productID: ID
+  _version: Int
+}
+
+input DeleteCartProductInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelCartProductConditionInput {
+  usersub: ModelStringInput
+  quantity: ModelIntInput
+  options: ModelStringInput
+  productID: ModelIDInput
+  and: [ModelCartProductConditionInput]
+  or: [ModelCartProductConditionInput]
+  not: ModelCartProductConditionInput
+}

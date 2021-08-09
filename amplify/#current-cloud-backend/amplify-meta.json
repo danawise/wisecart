@@ -1,0 +1,65 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-wisecart-dev-164148-authRole",
+      "UnauthRoleArn": "arn:aws:iam::639326993934:role/amplify-wisecart-dev-164148-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::639326993934:role/amplify-wisecart-dev-164148-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-wisecart-dev-164148-deployment",
+      "UnauthRoleName": "amplify-wisecart-dev-164148-unauthRole",
+      "StackName": "amplify-wisecart-dev-164148",
+      "StackId": "arn:aws:cloudformation:us-east-2:639326993934:stack/amplify-wisecart-dev-164148/11fae870-f3d2-11eb-99a5-06c9c5c9da14",
+      "AmplifyAppId": "dwyvltg330rsd"
+    }
+  },
+  "auth": {
+    "wisecart92acdd8b": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-wisecart-dev-164148-deployment/amplify-cfn-templates/auth/wisecart92acdd8b-cloudformation-template.yml",
+        "logicalId": "authwisecart92acdd8b"
+      },
+      "lastPushTimeStamp": "2021-08-05T02:07:35.174Z",
+      "output": {
+        "UserPoolId": "us-east-2_8bOz9a3Cn",
+        "AppClientIDWeb": "18qco33o2ootpjg8kj2al0tk8h",
+        "AppClientID": "6rutk8nfqkucv25n0pfl5ssnu3",
+        "IdentityPoolId": "us-east-2:a4f6dd6d-e17f-449a-9f5c-4871bfd3c899",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-2:639326993934:userpool/us-east-2_8bOz9a3Cn",
+        "IdentityPoolName": "wisecart92acdd8b_identitypool_92acdd8b__dev",
+        "UserPoolName": "wisecart92acdd8b_userpool_92acdd8b"
+      },
+      "lastPushDirHash": "5Gx0AJK2wF4HTJE2GubNnBT8rpE="
+    }
+  },
+  "api": {
+    "wisecart": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 365,
+              "description": "api key wisecart"
+            }
+          },
+          "additionalAuthenticationProviders": []
+        },
+        "GraphQLAPIIdOutput": "2dnusieuibhcbmylpevw5ugvka",
+        "GraphQLAPIEndpointOutput": "https://t4nmg5qhnvfsbgyh46plrgs3yq.appsync-api.us-east-2.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-vt2qbqw4mjebjmohvg5hak4rnm"
+      },
+      "lastPushTimeStamp": "2021-08-05T02:07:41.686Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-wisecart-dev-164148-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apiwisecart"
+      },
+      "lastPushDirHash": "yDX7ayFlzU34yvV8480quruVSM0="
+    }
+  }
+}

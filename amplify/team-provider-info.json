@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-wisecart-dev-164148-authRole",
+      "UnauthRoleArn": "arn:aws:iam::639326993934:role/amplify-wisecart-dev-164148-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::639326993934:role/amplify-wisecart-dev-164148-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-wisecart-dev-164148-deployment",
+      "UnauthRoleName": "amplify-wisecart-dev-164148-unauthRole",
+      "StackName": "amplify-wisecart-dev-164148",
+      "StackId": "arn:aws:cloudformation:us-east-2:639326993934:stack/amplify-wisecart-dev-164148/11fae870-f3d2-11eb-99a5-06c9c5c9da14",
+      "AmplifyAppId": "dwyvltg330rsd"
+    },
+    "categories": {
+      "auth": {
+        "wisecart92acdd8b": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+    "CreateAPIKey": 1,
+    "AppSyncApiName": "wisecart",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "S3DeploymentBucket": "amplify-wisecart-dev-164148-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/7dbda17d24dec1d9a9f087172e20e9b05cdacddd"
+}
